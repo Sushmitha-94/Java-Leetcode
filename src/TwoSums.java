@@ -1,3 +1,4 @@
+import java.util.HashMap;
 
 public class TwoSums {
 	
@@ -55,14 +56,41 @@ public class TwoSums {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] nums= {3,3};
-		int[] ret = twoSum(nums, 6);
+		int[] nums= {3,2,4};
+		int[] ret = twoSumB(nums, 6);
 		if(ret!=null) {
-			System.out.println(ret);
+			System.out.println("["+ret[0]+","+ret[1]+"]");
 		}
 
 	}
 	
+	//Better Solution
+	/*	Hash Map
+		The problem can be solved in O(N) time, using extra space.
+		- Create a new HashMap
+		- Iterate over the array
+  		- Subtract current array element from target
+  		- Check if the above difference exists in HashMap
+    	- If YES, then return the current index and the value of the difference in HashMap
+    	- If NO, then store the current element as HashMap key and current index as its value
+		- Return empty array as a result if nums array iteration is completed in the above step
+	 */
 	
+	public static int[] twoSumB(int[] nums, int target) {
+		
+		// Contains the difference required and the index. 
+		// For eg., Input: nums = [3,2,4], target = 6
+		// mapNum={[3,1],[4,2],[2,3]} => [(6-3), index of 3], breaks to add match is found
+		HashMap<Integer, Integer> mapNum = new HashMap<Integer,Integer>();
+		
+		for(int i=0; i<nums.length; i++) {
+			if(!mapNum.containsKey(nums[i])) 
+				mapNum.put(target-nums[i], i);
+			else
+				return new int[] {mapNum.get(nums[i]), i};
+		}
+		
+		return null;
+	}
 
 }
