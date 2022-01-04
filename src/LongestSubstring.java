@@ -70,6 +70,8 @@ public class LongestSubstring {
 	public static int lnOfLngstSubStr(String s) {
 		int retLen=0, start=0, end=1, i=0;
 		
+		if(s.length()<2)
+			return s.length();
 		while(end<s.length()) {
 			if(i==end) {
 				retLen = Math.max(end-start+1, retLen);
@@ -88,7 +90,26 @@ public class LongestSubstring {
         return retLen;
     }
 	
-	
+	// Save substring of un repeated values to test and save length
+	// Explanation:
+	// Loop through char
+	// 	if the char is present in text, save the substring from the repeated char to test
+	// 	add char to test & calculate retVal which is max(text.length, retVal)
+	public static int checkIndex(String s) {
+		int retLen = 0;
+		if(s.length()<2)
+			return s.length();
+		String test ="";
+		for(char c:s.toCharArray()) {
+			String currChar = String.valueOf(c);
+			if(test.contains(currChar)) {
+				test = test.substring(test.indexOf(c)+1);
+			}
+			test = test + currChar;
+			retLen = Math.max(test.length(), retLen);
+		}
+		return retLen;
+	}
 	
 	public static void main(String[] args) {
 		String str="dvdf";
