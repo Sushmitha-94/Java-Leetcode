@@ -80,6 +80,12 @@ public class TwoNums {
     }
 	
 	//BestSolution
+	// Loop through the listnodes till both are null
+	//    save the mod (l1+l2+carry) of 10 to the nect node
+	//    calculate the carry
+	//    move to next nodes if not null
+	// end loop
+	// if carry has value, save it in next listnode
 	public ListNode addTwoNumbersB(ListNode l1, ListNode l2) {
 		ListNode toRet = null;
         ListNode currNode = null;
@@ -115,9 +121,11 @@ public class TwoNums {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		ListNode l1 = new ListNode(0);
+		ListNode l1 = new ListNode(1);
+		l1.next = new ListNode(8);
 		
-		ListNode l2 = new ListNode(0);
+		ListNode l2 = new ListNode(9);
+		l2.next = new ListNode(2);
 		
 		ListNode toPrint = addTwoNumbers(l1,l2);
 		while(toPrint!=null) {
